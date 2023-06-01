@@ -1,0 +1,136 @@
+/* General Styling Start */
+a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* General Styling End */
+
+
+.side-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    padding: 66px 20px;
+    width: 232px;
+    height: 100%;
+    margin-top: 80px;
+    left: 0px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    border-radius: 0px;
+}
+
+
+.side-bar a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    border: 1px solid transparent;
+    color: rgb(107, 119, 141);
+
+}
+
+.side-img {
+    padding: 0px;
+    height: 30px;
+}
+
+.side-bar a:hover {
+    background-color:     rgb(210,227,255);
+
+}
+
+.side-links {
+    padding: 0px 16px;
+    gap: 20px;
+    width: 186px;
+    height: 46px;
+    border-radius: 15px;
+
+}
+
+.side-links img {
+    padding: 0;
+}
+
+.side-links-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 15px;
+
+    width: 186px;
+    height: 229px;
+}
+
+.side-text-size {
+    font-size: 18px;
+}
+
+.side-bar-legal {
+    margin-bottom: 215px;
+}
+
+@media (max-width:1000px) {
+    .side-bar {
+        height: 80px;
+        max-width: 100%;
+        min-width: 100%;
+        top: unset;
+        bottom: 0px;
+        padding: unset;
+        background-color: white;
+        z-index: 10;
+    }
+
+    .side-links {
+        height: 75px !important;
+    }
+
+    .side-bar-legal {
+        display: none;
+    }
+
+    .side-text-size {
+        font-size: 12px;
+    }
+
+    .side-links-div {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .side-bar a {
+        flex-direction: column;
+        justify-content: center;
+        white-space: nowrap;
+        width: 90px;
+        padding-block: 12px;
+        padding-inline: 8px;
+        height: 100px;
+    }
+
+    .side-bar a:hover {
+        border: 1px solid #42526e;
+        box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
+        height: 100px;
+    }
+}
+
+@media (max-width:405px) {
+    .side-bar a {
+        min-width: 85px;
+    }
+}
+
+@media (max-width:380px) {
+    .side-bar a {
+        min-width: 70px;
+        margin: 0;
+    }
+}

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo-blue.png">
+    <link rel="stylesheet" href="../css/board.css">
+    <link rel="stylesheet" href="../css/header-template.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <script src="../smallest_backend_ever/mini_backend.js"></script>
+    <script defer src="../js/template.js"></script>
+    <script defer src="../js/board.js"></script>
+    <script defer src="../js/board-priority.js"></script>
+
+
+
+</head>
+
+<body onload="includeHTML()">
+    <!-- Header Start -->
+    <div class="navbar">
+        <div w3-include-html="../assets/templates/header-template.html"></div>
+    </div>
+    <!-- Header End -->
+    <div class="log_out_button dontShow" id="log_out_button">
+        <button onclick="logOut()">Log Out</button>
+        <a href="./legalnotice.html"><button class="legal-notice-button">Legal Notice</button></a>
+    </div>
+    <!-- We need to wrap the sidebar and the board content in another div to put it next to each other -->
+    <main class="main">
+
+        <!-- Sidebar Start -->
+        <div class="sidebar">
+            <div w3-include-html="../assets/templates/sidebar-template.html"></div>
+        </div>
+        <!-- Sidebar End -->
+
+        <!-- Board Header Start-->
+
+        <div class="main-column" id="main-column">
+
+            <div class="kanbanboard-description">
+                <h1></h1>
+            </div>
+
+            <div class="board-header">
+                <div class="search-task">
+                    <input id="search-input" oninput="searchTask()" type="text" placeholder="Find Task">
+                    <img src="../assets/icons/search.png" alt="">
+                </div>
+                <div class="add-remove-container">
+                    <button class="cursor open-add-task" onclick="openAddTaskPopUp('todo')">Add task <span>+</span></button>
+                </div>
+            </div>
+            <!-- Board Header End-->
+
+            <!-- Task Pop Up Start -->
+            <div class="d-none" id="task-popup">
+
+            </div>
+            <!-- Task Pop Up End -->
+
+            <!-- Edit Task Pop Up Start -->
+            <div class="d-none" id="edit-task-popup">
+
+            </div>
+            <!-- Edit Task Pop Up End -->
+
+            <!-- Pop Up Start -->
+            <div id="overlay" class="overlay d-none"></div>
+            <div id="popup" class="popup d-none hide">
+                <button class="cursor x-button" onclick=" closeAddTaskPopUp()">X</button>
+
+                <form id="createtask-form" onsubmit="handleSubmit(event)">
+
+                    <div class="popup-content">
+
+                        <div class="popup-header">
+                            <h2>Add Task</h2><button id="submit-button" type="submit"
+                                class="createtask-button cursor">Create Task</button>
+                        </div>
+
+                        <div class="input-container">
+                            <input required id="task-title" class="popup-input" type="text" placeholder="Enter a title">
+                        </div>
+
+                        <div required onclick="showDropDown('popup')" id="select-contact-add" class="select-contact cursor"><div> Select contacts to assign</div> <div class="arrow"><img id="dropwdown-icon"
+                            class="dropdown-icon" src="../assets/icons/dropdown.png" alt=""></div>
+                        </div>
+                        <div id="contact_dropdown_popup" class="contact_dropdown">
+                        
+                        </div>
+                        <label for="appointment">
+                            <h4 class="date-header">Due date</h4>
+                            <div class="date">
+                                <input id="task-date" required type="date" />
+                            </div>
+                        </label>
+
+                        <h4 class="date-header">Category</h4>
+                        <div class="new-category-container d-none" id="new-category-container">
+                            <p class="d-none" id="category-alert">Please select a category name and then a color !</p>
+
+                            <div id="new-category-input" class="input-container">
+                                <input id="new-category-name" class="popup-input" type="text"
+                                    placeholder="new category name">
+                                <div class="check-and-cross">
+                                    <img onclick="hideNewCategory()" class="cursor" id="hide-new-category"
+                                        src="../assets/icons/x.png" alt="">
+                                    <img src="../assets/icons/divider.png" alt="">
+                                    <img class="cursor" id="add-new-category" src="../assets/icons/checkmark.png"
+                                        alt="">
+                                </div>
+
+                            </div>
+                            <div style="margin-left: 25px;" id="category-colors" class="new-category-colors">
+                                <img onclick="displayColor('lightBlue')" class="cursor"
+                                    src="../assets/icons/color1.png" alt="">
+                                <img onclick="displayColor('blue')" class="cursor"
+                                    src="../assets/icons/color2.png" alt="">
+                                <img onclick="displayColor('purple')" class="cursor"
+                                    src="../assets/icons/color3.png" alt="">
+                                <img onclick="displayColor('orange')" class="cursor"
+                                    src="../assets/icons/color4.png" alt="">
+                                <img onclick="displayColor('green')" class="cursor"
+                                    src="../assets/icons/color5.png" alt="">
+                                <img onclick="displayColor('red')" class="cursor"
+                                    src="../assets/icons/color6.png" alt="">
+                            </div>
+                        </div>
+
+                        <!-- Event listener to display the categorys -->
+                        <div class="cursor" id="display-categories">
+                            <p id="select-category-inner">Select task category</p>
+                            <img id="dropwdown-icon" class="dropdown-icon" src="../assets/icons/dropdown.png" alt="">
+                        </div>
+
+                        <div class="categorys-container">
+                            <div class="categorys d-none cursor" id="show-categorys">
+                                <div id="new-category" class="cursor new-category">create new category</div>
+                                <div id="created-categorys"></div>
+                            </div>
+                        </div>
+
+                        <div class="priority">
+                            <div class="priority-levels cursor" id="urgent" onclick="changeUrgentColor()"><span
+                                    id="urgent-inner">Urgent</span><img id="img1" src="../assets/icons/urgent.png"
+                                    alt=""></div>
+
+                            <div class="priority-levels cursor" id="medium" onclick="changeMediumColor()"><span
+                                    id="medium-inner">Medium</span> <img id="img2" src="../assets/icons/medium.png"
+                                    alt=""></div>
+
+                            <div class="priority-levels cursor" id="low" onclick="changeLowColor()"><span
+                                    id="low-inner">Low</span><img id="img3" src="../assets/icons/low.png" alt="">
+                            </div>
+                        </div>
+
+
+                        <div class="description">
+                            <h4>Description</h4>
+                            <textarea required maxlength="30" id="task-description"
+                                placeholder="Enter a description"></textarea>
+                        </div>
+
+                        <div class="subtasks">
+                            <h4>Subtask</h4>
+                            <div class="subtasks-input"><input id="task-subtask" minlength="8"
+                                    placeholder="Add new subtask" type="text">
+                                <div class="check-and-cross">
+                                    <img class="cursor" src="../assets/icons/x.png" alt="">
+                                    <img src="../assets/icons/divider.png" alt="">
+                                    <img id="add-subtask" onclick="addSubtask()" class="cursor"
+                                        src="../assets/icons/checkmark.png" alt="">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <ul id="subtasks_popup">
+
+                        </ul>
+
+
+                </form>
+            </div>
+        </div>
+        <!-- Pop Up End -->
+
+        <!-- Drag and Drop Start -->
+        <div class="stages-container">
+
+            <div ondrop="dropItem('todo')" ondragover="allowDrop(event)" class="stage-todo stage-general">
+
+                <div class="stage-header">
+                    <h2>To do</h2><button onclick="openAddTaskPopUp('todo')" class="cursor board_add_button">+</button>
+                </div>
+
+                <div class="container" id="stage-todo">
+                </div>
+            </div>
+
+            <div ondrop="dropItem('progress')" ondragover="allowDrop(event)" class="stage-todo stage-general">
+
+                <div class="stage-header">
+                    <h2>In progress</h2><button onclick="openAddTaskPopUp('progress')" class="cursor board_add_button">+</button>
+                </div>
+
+                <div class="container" id="stage-progress">
+                </div>
+            </div>
+
+            <div ondrop="dropItem('feedback')" ondragover="allowDrop(event)" class="stage-todo stage-general">
+                <div class="stage-header">
+                    <h2>Await feedback</h2><button onclick="openAddTaskPopUp('feedback')" class="cursor board_add_button">+</button>
+                </div>
+                <div class="container" id="stage-feedback">
+
+                </div>
+            </div>
+
+            <div ondrop="dropItem('done')" ondragover="allowDrop(event)" class="stage-todo stage-general">
+                <div class="stage-header">
+                    <h2>Done</h2><button onclick="openAddTaskPopUp('done')" class="cursor board_add_button">+</button>
+                </div>
+                <div class="container" id="stage-done">
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- Drag and Drop End -->
+
+    </main>
+</body>
+
+</html>

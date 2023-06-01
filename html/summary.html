@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/logo-blue.png">
+    <link rel="stylesheet" href="../css/summary.css">
+    <link rel="stylesheet" href="../css/board.css">
+    <link rel="stylesheet" href="../css/add-task.css">
+    <link rel="stylesheet" href="../css/board.css">
+    <!-- <link rel="stylesheet" href="../css/contacts.css"> -->
+    <link rel="stylesheet" href="../css/header-template.css">
+    <link rel="stylesheet" href="../css/add-task.css">
+    <link rel="stylesheet" href="../css/legalnotice.css">
+    <link rel="stylesheet" href="../css/summary.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../smallest_backend_ever/mini_backend.js"></script>
+    <script src="../js/summary.js"></script>
+</head>
+
+<body onload="includeHTML()">
+    <!-- Header Start -->
+    <div class="navbar">
+        <div w3-include-html="../assets/templates/header-template.html"></div>
+    </div>
+    <!-- Header End -->
+
+    <!-- Main Start -->
+    <main>
+
+        <!-- Sidebar Start -->
+        <div class="sidebar">
+            <div w3-include-html="../assets/templates/sidebar-template.html"></div>
+        </div>
+        <!-- Sidebar End -->
+        <div class="log_out_button dontShow" id="log_out_button">
+            <button onclick="logOut()">Log Out</button>
+            <a href="./legalnotice.html"><button class="legal-notice-button">Legal Notice</button></a>
+        </div>
+        
+        <div class="main-right" id="main_right">
+
+            <!-- Main Right Header Start -->
+            
+            <!-- Main Right Header End -->
+
+            <!-- Main Right Tasks Start -->
+            <div class="main-right-tasks">
+
+                <!-- Main Top Start -->
+                <div class="show_logged_on_user" id="logged_on_user">
+                    
+                </div>
+                <div class="main-right-top">
+
+                <a href="board.html">
+                    <div class="task-urgent cursor">
+                        <div class="task-urgent-left">
+                            <div class="task-urgent-left-top"><img src="../assets/img/task-urgent.png" alt="">
+                                <h2 id="numUrgent">0</h2>
+                            </div>
+                            <p>Tasks Urgent</p>
+                        </div>
+
+                        <hr class="vertical-line" width="2" color="#fff" size="130" />
+
+                        <div class="task-urgent-right">
+                            <h2>October 16, 2022</h2>
+                            <p>Upcoming Deadline</p>
+                        </div>
+                </div>
+                </a>
+                
+
+                    <a href="board.html">
+                    <div class="task-todo task-general cursor">
+                        <div class="task-todo-top">
+                            <img src="../assets/img/task-todo.png" alt="">
+                            <h2 id="numToDo"></h2>
+                        </div>
+                        <p>Tasks To-do</p>
+                    </div>
+                </a>
+
+                </div>
+                <!-- Main Top End -->
+
+                <!-- Main Bottom Start -->
+                <div class="main-right-bottom">
+                    <a href="board.html">
+                    <div class="task-board task-general cursor">
+                        
+                        <div class="task-todo-top"><img src="../assets/img/task-todo.png" alt="">
+                            <h2 id="onBoardNum"></h2>
+                        </div>
+                        <p>Tasks on board</p>
+                    </div>
+                </a>
+                    <a href="board.html">
+                    <div class="task-board task-general cursor">   
+                        <div class="task-todo-top"><img src="../assets/img/task-inprogress.png" alt="">
+                            <h2 id="numProgress">0</h2>
+                        </div>
+                        <p>Task in Progress</p>
+                    </div>
+                    </a>
+                    <a href="board.html">
+                    <div class="task-progress task-general cursor">
+                        <div class="task-todo-top"><img src="../assets/img/awaiting-feedback.png" alt="">
+                            <h2 id="awaitingFeedbackNum">0</h2>
+                        </div>
+                        <p>Awaiting Feedback</p>
+                    </div>
+                    </a>
+                    <a href="board.html">
+                    <div class="task-feedback task-general cursor">
+                        <div class="task-todo-top"><img src="../assets/img/task-done.png" alt="">
+                            <h2 id="numDone">0</h2>
+                        </div>
+                        <p>Tasks done</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Main Bottom Start -->
+            <!-- Main Right Tasks End -->
+
+            <div class="main-right-tasks-information"></div>
+        </div>
+
+    </main>
+
+    <!-- Main End -->
+
+    
+</body>
+
+</html>
